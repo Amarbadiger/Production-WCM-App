@@ -24,10 +24,7 @@ connectDB();
 app.use(express.json());
 app.use(morgan("dev"));
 
-app.use(
-  "https://production-wcm-app-1.onrender.com/api/vi/user",
-  require("./Routes/userRoutes")
-);
+app.use("/api/vi/user", require("./Routes/userRoutes"));
 
 app.use(express.static(path.join(__dirname, "/dist")));
 
