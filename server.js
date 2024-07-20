@@ -3,9 +3,10 @@ const dotenv = require("dotenv");
 const { connectDB } = require("./database/connectdb");
 const cors = require("cors");
 const morgan = require("morgan");
-//Load Environment Variabls from .env file
+
 const path = require("path");
 
+//Load Environment Variabls from .env file
 dotenv.config();
 
 const app = express();
@@ -21,10 +22,11 @@ app.use(morgan("dev"));
 
 app.use("/api/vi/user", require("./Routes/userRoutes"));
 
-app.use(express.static(path.join(__dirname, "./dist")));
+app.use(express.static(path.join(__dirname, "/dist")));
 
-app.get("*", function (req, res) {
-  res.sendFile(path.join(__dirname, "./dist/index.html"));
+// The "catchall" handler: for any request that doesn't match one above, send back index.html
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "/dist", "index.html"));
 });
 
 app.listen(process.env.PORT, () => {
