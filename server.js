@@ -12,7 +12,11 @@ dotenv.config();
 const app = express();
 
 // for PORT Requesting
-app.use(cors());
+app.use(
+  cors({
+    origin: " https://production-wcm-app-1.onrender.com/",
+  })
+);
 
 //Connect to MongoDB
 connectDB();
